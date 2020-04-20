@@ -1,4 +1,5 @@
-import axios, { AxiosResponse, AxiosPromise } from 'axios';
+import axios, { AxiosResponse } from 'axios';
+import { Eventing } from './Eventing';
 
 // interface also cleans up code by not having a ton
 // code in the constructor args
@@ -8,10 +9,10 @@ interface UserProps {
   id?: number;
 }
 
-type Callback = () => void;
-
 export class User {
-  events: { [key: string]: Callback[] } = {};
+  // use composition to have classes handle different tasks
+  public events: Eventing = new Eventing();
+
   constructor(private data: UserProps) {}
 
   get(propName: string): number | string {
@@ -20,19 +21,6 @@ export class User {
 
   set(update: UserProps): void {
     Object.assign(this.data, update);
-  }
-
-  on(eventName: string, callback: Callback): void {
-    const handlers = this.events[eventName] || [];
-    handlers.push(callback);
-    this.events[eventName] = handlers;
-  }
-
-  trigger(eventName: string): void {
-    const handlers = this.events[eventName];
-    if (!handlers || !handlers.length) return;
-
-    handlers.forEach((callback) => callback());
   }
 
   async fetch(): Promise<void> {
