@@ -1,3 +1,14 @@
 {
-  "users": []
+  "users": [
+    {
+      "id": 1,
+      "name": "new name",
+      "age": 1000
+    },
+    {
+      "name": "new record",
+      "age": 0,
+      "id": 2
+    }
+  ]
 }
