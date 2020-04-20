@@ -4,12 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:db": "npx json-server -w db.json",
+    "start:parcel": "npx parcel view/index.html",
+    "start": "concurrently npm:start:*"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.19.2",
+    "json-server": "^0.16.1",
     "parcel-bundler": "^1.12.4"
   },
   "devDependencies": {
