@@ -33,17 +33,13 @@ export class Model<T extends HasId> {
   //   this getter returns a reference to the on method
   // this way we do not pass args into the on method by using an on method on this class
   // prevents against passing args from method to method which can get messy
-  get on() {
-    return this.events.on;
-  }
 
-  get trigger() {
-    return this.events.trigger;
-  }
+  //   shorten syntax
+  on = this.events.on;
 
-  get get() {
-    return this.attributes.get;
-  }
+  trigger = this.events.trigger;
+
+  get = this.attributes.get;
 
   set(update: T): void {
     this.attributes.set(update);
