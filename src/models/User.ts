@@ -2,6 +2,7 @@ import { Eventing } from './Eventing';
 import { Sync } from './Sync';
 import { Attributes } from './Attributes';
 import { Model } from './Model';
+import { Collection } from './Collection';
 
 // interface also cleans up code by not having a ton
 // code in the constructor args
@@ -21,6 +22,13 @@ export class User extends Model<UserProps> {
       new Attributes<UserProps>(attrs),
       new Eventing(),
       new Sync<UserProps>(rootUrl)
+    );
+  }
+
+  //static build collection
+  static buildUserCollection(): Collection<User, UserProps> {
+    return new Collection<User, UserProps>(rootUrl, (json) =>
+      User.buildUser(json)
     );
   }
 }
