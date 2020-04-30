@@ -36,7 +36,11 @@ export class UserForm {
 
   onSetNameClick = (): void => {
     const input = this.parent.querySelector('input');
-    this.model.set({ name: input.value });
+    // input has type union of html element or null
+    // to protect our code we use a type guard to ensure the input is not null
+    if (input) {
+      this.model.set({ name: input.value });
+    }
   };
 
   //   had to bind onSetAge or else loose context of this
