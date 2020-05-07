@@ -1,7 +1,7 @@
-import {Model} from '../models/Model'
+import { Model } from '../models/Model';
 
-export abstract class View<T> {
-  constructor(public parent: Element, public model: T extends Model) {
+export abstract class View<T extends Model<K>, K> {
+  constructor(public parent: Element, public model: T) {
     this.bindModel();
   }
 
